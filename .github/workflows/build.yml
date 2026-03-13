@@ -16,8 +16,16 @@ jobs:
       # Вот этот шаг создаст файл из твоего секрета:
       - name: Создать google-services.json
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
+      - name: Восстановить keystore
+        run: echo '${{ secrets.KEYSTORE_FILE_BASE64 }}' | base64 --decode > android/app/upload-keystore.jks
       - run: flutter pub get
-      - run: flutter build appbundle --release
+      - name: Build AppBundle
+        run: flutter build appbundle --release
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          STORE_FILE: android/app/upload-keystore.jks # Вот эта строка важна!
       - uses: actions/upload-artifact@v4
         with:
           name: app-bundle
