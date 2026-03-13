@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1027046452784",
+    "project_id": "honda-service-d4107",
+    "storage_bucket": "honda-service-d4107.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027046452784:android:edd12d31cd965cf07887f5",
+        "android_client_info": {
+          "package_name": "com.example.hondaservice"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDskiiZRFJ5V13S9hr3YwMwaqAqLsYkAyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027046452784:android:1cd71ae24a1b76a97887f5",
+        "android_client_info": {
+          "package_name": "com.insar.honda.client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDskiiZRFJ5V13S9hr3YwMwaqAqLsYkAyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
