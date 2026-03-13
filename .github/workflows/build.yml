@@ -12,7 +12,8 @@ jobs:
           java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          channel: 'stable' # Берем стабильную версию
+          flutter-version: 'latest' # Сервер сам скачает свежий Flutter
       # Вот этот шаг создаст файл из твоего секрета:
       - name: Создать google-services.json
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
@@ -25,7 +26,9 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          STORE_FILE: android/app/upload-keystore.jks # Вот эта строка важна!
+          STORE_FILE: android/app/upload-keystore.jks
+          # Добавь эти флаги для поддержки 16 КБ:
+          ANDROID_GRADLE_ARGS: "-Pandroid.bundle.enableUncompressedNativeLibs=false"
       - uses: actions/upload-artifact@v4
         with:
           name: app-bundle
