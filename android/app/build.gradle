@@ -69,8 +69,7 @@ android {
             
             // Если мы на GitHub, используем файл, который мы создали через base64
             // Если на Маке, используем путь из key.properties
-            def storeFilePath = System.getenv('STORE_FILE') ?: keystoreProperties['storeFile']
-            storeFile storeFilePath ? file(storeFilePath) : null
+            storeFile file('upload-keystore.jks')
         }
     }
 
