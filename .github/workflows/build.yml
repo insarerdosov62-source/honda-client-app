@@ -21,17 +21,15 @@ jobs:
         run: echo '${{ secrets.KEYSTORE_FILE_BASE64 }}' | base64 --decode > android/app/upload-keystore.jks
       - run: flutter pub get
       - name: Build AppBundle
-        # Передаем флаг прямо в команду сборки через --build-number или дополнительные параметры
-        run: |
-          flutter build appbundle --release \
-          --target-platform android-arm64,android-x64 \
-          --extra-gen-snapshot-options=--no-enable-asserts \
-          --build-arg="-Pandroid.bundle.enableUncompressedNativeLibs=false"
+        run: flutter build appbundle --release --build-name=1.0.0 --build-number=8
         env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           STORE_FILE: android/app/upload-keystore.jks
+          # Эта переменная автоматически подхватывается Gradle, 
+          # если мы настроили build.gradle
+          ORG_GRADLE_PROJECT_android_bundle_enableUncompressedNativeLibs: "false"
       - uses: actions/upload-artifact@v4
         with:
           name: app-bundle
