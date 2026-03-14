@@ -21,7 +21,7 @@ jobs:
         run: echo '${{ secrets.KEYSTORE_FILE_BASE64 }}' | base64 --decode > android/app/upload-keystore.jks
       - run: flutter pub get
       - name: Build AppBundle
-        run: flutter build appbundle --release --build-name=1.0.0 --build-number=8
+        run: flutter build appbundle --release --build-name=1.0.0 --build-number=9
         env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -34,5 +34,5 @@ jobs:
         with:
           name: app-bundle
           path: build/app/outputs/bundle/release/app-release.aab
-          
+
           
