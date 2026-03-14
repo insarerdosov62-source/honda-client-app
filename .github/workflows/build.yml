@@ -21,7 +21,7 @@ jobs:
         run: echo '${{ secrets.KEYSTORE_FILE_BASE64 }}' | base64 --decode > android/app/upload-keystore.jks
       - run: flutter pub get
       - name: Build AppBundle
-        run: flutter build appbundle --release --build-name=1.0.0 --build-number=10
+        run: flutter build appbundle --release --build-name=1.0.0 --build-number=12
         env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
@@ -33,6 +33,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: app-bundle
-          path: build/app/outputs/bundle/release/app-release.aab
+          path: build/app/outputs/bundle/release/app-release.aab 
 
           
