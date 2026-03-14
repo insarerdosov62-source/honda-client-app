@@ -87,6 +87,7 @@ android {
     // Добавь это для поддержки 16 КБ
     packaging {
         jniLibs {
+            // Вот это единственный современный стандарт
             useLegacyPackaging = false
         }
     }
