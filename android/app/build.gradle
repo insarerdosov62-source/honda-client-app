@@ -83,6 +83,13 @@ android {
             shrinkResources false
         }
     }
+
+    // Добавь это для поддержки 16 КБ
+    packaging {
+        jniLibs {
+            useLegacyPackaging = false
+        }
+    }
 }
 
 flutter {
