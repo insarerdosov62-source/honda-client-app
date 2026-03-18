@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart'; // ДОБАВИЛИ
 import 'package:honda_client_app/history_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:honda_client_app/main.dart'; 
+import 'package:honda_client_app/main.dart';
 
-import 'login_screen.dart'; 
+import 'login_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -80,9 +80,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         MaterialPageRoute(
           builder: (context) => MainNavigationScreen(carNumber: plateNumber),
         ),
-            (route) => false,
+        (route) => false,
       );
-
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -124,7 +123,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.directions_car),
                 ),
-                validator: (value) => value!.trim().isEmpty ? 'Введите госномер' : null,
+                validator: (value) =>
+                    value!.trim().isEmpty ? 'Введите госномер' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -134,18 +134,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.person),
                 ),
-                 validator: (value) => value!.trim().isEmpty ? 'Введите ФИО' : null,
+                validator: (value) =>
+                    value!.trim().isEmpty ? 'Введите ФИО' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _modelController,
                 decoration: const InputDecoration(
                   labelText: 'Модель машины',
-                  hintText: 'Honda CR-V',
+                  hintText: 'Например CR-V',
                   border: OutlineInputBorder(),
-                   prefixIcon: Icon(Icons.time_to_leave),
+                  prefixIcon: Icon(Icons.time_to_leave),
                 ),
-                 validator: (value) => value!.trim().isEmpty ? 'Введите модель' : null,
+                validator: (value) =>
+                    value!.trim().isEmpty ? 'Введите модель' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
@@ -185,7 +187,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                       onPressed: _registerCar,
-                      child: const Text('Зарегистрироваться', style: TextStyle(fontSize: 16)),
+                      child: const Text('Зарегистрироваться',
+                          style: TextStyle(fontSize: 16)),
                     ),
             ],
           ),

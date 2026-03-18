@@ -5,7 +5,8 @@ class MapScreen extends StatelessWidget {
   const MapScreen({super.key});
 
   void _openGoogleMaps() async {
-    final Uri url = Uri.parse("https://www.google.com/maps/search/?api=1&query=HONDA+SERVICE+Суюнбая+143а+Алматы");
+    final Uri url = Uri.parse(
+        "https://www.google.com/maps/search/?api=1&query=43.286293,76.949530");
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     }
@@ -22,7 +23,7 @@ class MapScreen extends StatelessWidget {
             const Icon(Icons.location_on, size: 80, color: Colors.red),
             const SizedBox(height: 20),
             const Text(
-              "HONDA SERVICE",
+              "HS SERVICE",
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
@@ -44,7 +45,8 @@ class MapScreen extends StatelessWidget {
                 backgroundColor: Colors.red[800],
                 foregroundColor: Colors.white,
                 minimumSize: const Size(double.infinity, 55),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
               ),
             ),
             const SizedBox(height: 20),
@@ -61,7 +63,11 @@ class MapScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(day, style: const TextStyle(fontSize: 16)),
-          Text(time, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: isClosed ? Colors.red : Colors.black)),
+          Text(time,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: isClosed ? Colors.red : Colors.black)),
         ],
       ),
     );

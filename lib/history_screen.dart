@@ -15,7 +15,7 @@ class HistoryScreen extends StatelessWidget {
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text(
-          'HONDA SERVICE',
+          'HS SERVICE',
           style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.2),
         ),
         backgroundColor: Colors.red[800],
@@ -91,15 +91,20 @@ class HistoryScreen extends StatelessWidget {
                   ],
                 ),
                 child: Theme(
-                  data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                  data: Theme.of(context)
+                      .copyWith(dividerColor: Colors.transparent),
                   child: ExpansionTile(
-                    tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    leading: Icon(Icons.build_circle, color: Colors.red[800], size: 30),
+                    tilePadding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    leading: Icon(Icons.build_circle,
+                        color: Colors.red[800], size: 30),
                     title: Text(
                       sDate,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    subtitle: Text(sTime, style: TextStyle(color: Colors.grey[600])),
+                    subtitle:
+                        Text(sTime, style: TextStyle(color: Colors.grey[600])),
                     trailing: Text(
                       '$sPrice ₸',
                       style: TextStyle(
@@ -117,19 +122,23 @@ class HistoryScreen extends StatelessWidget {
                           children: [
                             _buildCategorizedList(sType),
                             const SizedBox(height: 20),
-                            if ((photoBefore != null && photoBefore.isNotEmpty) ||
+                            if ((photoBefore != null &&
+                                    photoBefore.isNotEmpty) ||
                                 (photoAfter != null && photoAfter.isNotEmpty))
                               Row(
                                 children: [
-                                  if (photoBefore != null && photoBefore.isNotEmpty)
+                                  if (photoBefore != null &&
+                                      photoBefore.isNotEmpty)
                                     _buildPhotoItem(context, "ДО", photoBefore),
-                                  if (photoBefore != null && 
-                                      photoBefore.isNotEmpty && 
-                                      photoAfter != null && 
+                                  if (photoBefore != null &&
+                                      photoBefore.isNotEmpty &&
+                                      photoAfter != null &&
                                       photoAfter.isNotEmpty)
                                     const SizedBox(width: 12),
-                                  if (photoAfter != null && photoAfter.isNotEmpty)
-                                    _buildPhotoItem(context, "ПОСЛЕ", photoAfter),
+                                  if (photoAfter != null &&
+                                      photoAfter.isNotEmpty)
+                                    _buildPhotoItem(
+                                        context, "ПОСЛЕ", photoAfter),
                                 ],
                               ),
                           ],
@@ -168,7 +177,8 @@ class HistoryScreen extends StatelessWidget {
 
         // Проверка на заголовки категорий
         final categories = ['ТО', 'ХОДОВАЯ', 'ДВС', 'ТРАНСМИССИЯ', 'ПРОЧЕЕ'];
-        bool isHeader = categories.any((cat) => cleanLine.toUpperCase().startsWith(cat));
+        bool isHeader =
+            categories.any((cat) => cleanLine.toUpperCase().startsWith(cat));
 
         if (isHeader) {
           return Padding(
@@ -191,7 +201,8 @@ class HistoryScreen extends StatelessWidget {
         if (cleanLine.contains('(') && cleanLine.contains(')')) {
           int start = cleanLine.indexOf('(');
           int end = cleanLine.indexOf(')');
-          comment = cleanLine.substring(start + 1, end).replaceAll('ком:', '').trim();
+          comment =
+              cleanLine.substring(start + 1, end).replaceAll('ком:', '').trim();
           job = cleanLine.substring(0, start).trim();
         }
 
@@ -203,8 +214,10 @@ class HistoryScreen extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("• ", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Expanded(child: Text(job, style: const TextStyle(fontSize: 15))),
+                  const Text("• ",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Expanded(
+                      child: Text(job, style: const TextStyle(fontSize: 15))),
                 ],
               ),
               if (comment != null && comment.isNotEmpty)
@@ -212,7 +225,10 @@ class HistoryScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 14, top: 2),
                   child: Text(
                     "— $comment",
-                    style: TextStyle(fontSize: 13, color: Colors.grey[600], fontStyle: FontStyle.italic),
+                    style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey[600],
+                        fontStyle: FontStyle.italic),
                   ),
                 ),
             ],
@@ -229,7 +245,10 @@ class HistoryScreen extends StatelessWidget {
         children: [
           Text(
             label,
-            style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.grey[700]),
+            style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[700]),
           ),
           const SizedBox(height: 6),
           GestureDetector(

@@ -14,7 +14,7 @@ import 'profile_screen.dart';
 // Канал уведомлений для Android
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel',
-  'Важные уведомления Honda',
+  'Важные уведомления',
   description: 'Уведомления о готовности автомобиля',
   importance: Importance.max,
   playSound: true,
@@ -52,8 +52,19 @@ void main() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
 
+  // 2. ДОБАВЬ ЭТО: Настройки для iOS (Darwin)
+  const DarwinInitializationSettings initializationSettingsDarwin =
+      DarwinInitializationSettings(
+    requestAlertPermission: true,
+    requestBadgePermission: true,
+    requestSoundPermission: true,
+  );
+
   await flutterLocalNotificationsPlugin.initialize(
-    const InitializationSettings(android: initializationSettingsAndroid),
+    const InitializationSettings(
+      android: initializationSettingsAndroid,
+      iOS: initializationSettingsDarwin, // Теперь iOS не будет ругаться!
+    ),
   );
 
   final prefs = await SharedPreferences.getInstance();
@@ -75,7 +86,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Honda Client App',
+      title: 'HS Client App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
@@ -115,8 +126,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       debugPrint("TOKEN_DEBUG: $token");
       await FirebaseFirestore.instance
           .collection('cars')
-          .doc(widget.carNumber.toUpperCase()) // Добавил ToUpperCase для надежности
-          .set({'pushToken': token}, SetOptions(merge: true)); // Используем merge, чтобы не затереть статус
+          .doc(widget.carNumber
+              .toUpperCase()) // Добавил ToUpperCase для надежности
+          .set({
+        'fcmToken': token
+      }, SetOptions(merge: true)); // Используем merge, чтобы не затереть статус
     }
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -149,10 +163,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       if (snapshot.exists) {
         String newStatus = snapshot.data()?['status'] ?? '';
         if (_lastStatus != null && _lastStatus != newStatus) {
-          String msg = newStatus == 'ready' 
-              ? "✅ Ваша Honda готова!" 
+          String msg = newStatus == 'ready'
+              ? "✅ Ваша машина готова!"
               : "🔔 Статус: $newStatus";
-          _showInternalNotification(msg, newStatus == 'ready' ? Colors.green : Colors.black87);
+          _showInternalNotification(
+              msg, newStatus == 'ready' ? Colors.green : Colors.black87);
         }
         _lastStatus = newStatus;
       }

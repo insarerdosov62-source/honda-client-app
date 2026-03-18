@@ -24,7 +24,7 @@ def flutterVersionCode = localProperties.getProperty('flutter.versionCode') ?: '
 def flutterVersionName = localProperties.getProperty('flutter.versionName') ?: '1.0'
 
 android {
-    namespace "com.insar.honda.client"
+    namespace "com.insar.hs.service"
     compileSdk 35
 
     compileOptions {
@@ -41,7 +41,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.insar.honda.client"
+        applicationId "com.insar.hs.service"
         minSdkVersion 23
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
@@ -88,7 +88,7 @@ android {
     packaging {
         jniLibs {
             // Вот это единственный современный стандарт
-            useLegacyPackaging = false
+            useLegacyPackaging = true
         }
     }
 }

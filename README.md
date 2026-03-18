@@ -1,4 +1,4 @@
-# Honda Service Management System
+# HS Service Management System
 
 A robust, real-time maintenance tracking ecosystem designed to bridge the operational gap between automotive service centers and vehicle owners. 
 
