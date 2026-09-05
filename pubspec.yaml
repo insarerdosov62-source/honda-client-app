@@ -1,0 +1,51 @@
+name: honda_client_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+16
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.9
+  # Совместимая пара версий 2022 года:
+  firebase_core: ^4.14.0
+  cloud_firestore: ^6.9.0
+  firebase_messaging: ^16.6.0
+  
+  shared_preferences: ^2.5.5
+  cached_network_image: ^3.4.1
+  http: ^1.6.0
+  flutter_local_notifications: ^22.3.0
+  url_launcher: ^6.3.2
+  change_app_package_name: 1.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.0 # <--- Добавь это
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  title: "HS service" # <--- Добавь это для отображения под иконкой
+  adaptive_icon_background: "#C62828"
+  adaptive_icon_foreground: "assets/images/app_icon.png"
+  remove_alpha_ios: true
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/app_icon.png
+
+flutter_native_splash:
+  color: "#C62828" # Твой фирменный красный фон
+  image: assets/images/app_icon.png # Твой логотип по центру
+  android_12:
+    image: assets/images/app_icon.png
+    color: "#C62828"
+  fullscreen: true
