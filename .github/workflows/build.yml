@@ -32,6 +32,7 @@ jobs:
           name: app-bundle
           path: build/app/outputs/bundle/release/app-release.aab 
       - name: Загрузить сам keystore в артефакты
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: my-keystore-file
